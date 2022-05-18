@@ -1,0 +1,24 @@
+package test.automation.hooks;
+
+import org.junit.After;
+import test.automation.driver.DriverPool;
+
+import java.util.Optional;
+
+public class BaseDriverHooks {
+    public DriverPool driverPool = new DriverPool();
+
+    @After
+    public void afterTest(){
+        quitAndroidDrivers(driverPool);
+    }
+
+    private void quitAndroidDrivers(DriverPool drivers) {
+        Optional.ofNullable(drivers.getAndroidDriver()).ifPresent(
+                drive -> {
+                    drive.quit();
+                    drivers.setAndroidDriver(null);
+                }
+        );
+    }
+}

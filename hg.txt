@@ -1,0 +1,13 @@
+package com.miniprojek.kerfeker;
+
+import com.github.javafaker.Faker;
+
+public class KerfekerApplication {
+
+	public static void main(String[] args) {
+		Faker random = new Faker();
+		String name = random.name().fullName();
+		System.out.println(name);
+	}
+
+}
